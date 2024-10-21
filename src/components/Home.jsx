@@ -2,8 +2,16 @@ import image1 from "../assets/image.webp";
 import Card from "./Card";
 import image2 from "../assets/add.png"
 import image3 from "../assets/image3.png"
+import { useState } from "react";
+import Modal from "./Modal";
 
 const Home = () => {
+    const [isModalOpen, setIsModalOpen] = useState(true);
+
+    const handleToggleModal = () => {
+        setIsModalOpen(prev => !prev)
+    }
+
     const cards = [
         {
             title: "Git workflow",
@@ -39,7 +47,9 @@ const Home = () => {
                 <div>
                     <div>
                         <div className="p-4">
-                            <img src={image2} alt="" className=" w-full  rounded-2xl border-black border-2 border-b-4 border-r-4" />
+                            <button onClick={handleToggleModal}>
+                                <img src={image2} alt="" className=" w-full  rounded-2xl border-black border-2 border-b-4 border-r-4" />
+                            </button>
                         </div>
                         <p className="pl-8 text-xl font-bold">Add new link</p>
                     </div>
@@ -52,9 +62,14 @@ const Home = () => {
                         title={card.title}
                         creationDate={card.creationDate}
                         type={card.type}
-                     className="w-full  rounded-xl border-black border-2"/>
+                        className="w-full  rounded-xl border-black border-2" />
                 ))}
             </div>
+
+            {/* Modal */}
+            {isModalOpen &&
+                <Modal isModalOpen={isModalOpen} handleToggleModal={handleToggleModal} />
+            }
         </div>
     );
 }
