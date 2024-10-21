@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const Modal = ({ isModalOpen, handleToggleModal }) => {
+    const [name, setName] = useState('');
+    const [type, setType] = useState('session');
 
     const handleSubmit = () => {
          
@@ -25,17 +29,26 @@ const Modal = ({ isModalOpen, handleToggleModal }) => {
                     </div>
 
                     <div className="flex items-center">
-                        <label className="font-bold text-lg w-32">Status:</label>
+                        <label className="font-bold text-lg w-32">Link:</label>
                         <input type="text" className="border border-black rounded-md flex-1 p-2 border-r-4 border-b-4" />
                     </div>
 
                     <div className="flex items-center">
                         <label className="font-bold text-lg w-32">Type:</label>
-                        <input type="text" className="border border-black rounded-md flex-1 p-2 border-r-4 border-b-4"/>
+                        <select type="text" className="border border-black rounded-md flex-1 p-2 border-r-4 border-b-4">
+                        <option value="session">Session</option>
+                        <option value="readonly">Readonly</option>
+                        
+                        </select>
                     </div>
                     <div className="flex items-center">
                         <label className="font-bold text-lg w-32">Progress:</label>
-                        <input type="text" className="rounded-md flex-1 p-2 border-2 border-black  border-r-4 border-b-4" />
+                        <select type="text" className="rounded-md flex-1 p-2 border-2 border-black  border-r-4 border-b-4" >
+                        <option value="Not Started">Not Started</option>
+                        <option value="Hiatus">Hiatus</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+
                     </div>
                     <div className="flex justify-center items-center">
                         <button onClick={handleSubmit} className="justify-center items-center px-6 py-2 border-2 border-black rounded-xl border-r-4 border-b-4">
