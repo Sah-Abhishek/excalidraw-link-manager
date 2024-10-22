@@ -17,25 +17,29 @@ const Home = () => {
             title: "Git workflow",
             image: image3,
             creationDate: '2023-10-22',
-            type: 'Read-only'
+            type: 'Read-only',
+            link: 'https://excalidraw.com/#room=fac1f49f6c5937037738,pO4Fqng-6R-aNtjH95KxeQ'
         },
         {
             title: "Git workflow",
             image: image3,
             creationDate: '2023-10-22',
-            type: 'Read-only'
+            type: 'Read-only',
+            link: '#'
         },
         {
             title: "Git workflow",
             image: image3,
             creationDate: '2023-10-22',
-            type: 'Read-only'
+            type: 'Read-only',
+            link: '#'
         },
         {
             title: "Git workflow",
             image: image3,
             creationDate: '2023-10-22',
-            type: 'Read-only'
+            type: 'Read-only',
+            link: '#'
         },
     ];
 
@@ -62,6 +66,7 @@ const Home = () => {
                         title={card.title}
                         creationDate={card.creationDate}
                         type={card.type}
+                        link={card.link}
                         className="w-full  rounded-xl border-black border-2" />
                 ))}
             </div>

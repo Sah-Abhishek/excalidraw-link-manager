@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import image1 from "../assets/image.webp";
 
-const Card = ({ image, title, type }) => {
+const Card = ({ image, title, type, link }) => {
     const [isDropDownOpen, setIsdropDownOpen] = useState(false);
     const dropDownRef = useRef(null);
 
@@ -10,7 +10,7 @@ const Card = ({ image, title, type }) => {
     }
 
     const handleClickedOutside = () => {
-        if (dropDownRef.current && !dropDownRef.current.contains(event.target)){
+        if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
             setIsdropDownOpen(false);
         }
     }
@@ -29,7 +29,9 @@ const Card = ({ image, title, type }) => {
 
     return (
         <div className="flex flex-col m-4 relative group">
-            <img src={image} alt={title} className="w-full rounded-2xl border-black border-2 border-b-4 border-r-4" />
+            <a href={link}>
+                <img src={image} alt={title} className="w-full rounded-2xl border-black border-2 border-b-4 border-r-4" />
+            </a>
             <div className="absolute top-2 right-2 hidden group-hover:block">
                 <button onClick={toggleDropDown}>
                     <div className="hover:opacity-70 rounded-lg" >
