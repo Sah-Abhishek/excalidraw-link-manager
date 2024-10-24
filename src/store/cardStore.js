@@ -1,5 +1,6 @@
-import create from 'zustand';
-import { persist } from 'zustand/middleware'
+import {create} from 'zustand';
+import { persist } from 'zustand/middleware';
+
 
 const useCardStore = create(persist(
     (set) => ({
@@ -7,11 +8,11 @@ const useCardStore = create(persist(
         addCard: (card) => set((state) => ({ cards: [...state.cards, card] })),
 
 
-    },
+    }),
     {
         name: 'excalidraw-storage-pro',
         getStorage: () => localStorage
-    })
+    }
 ))
 
 

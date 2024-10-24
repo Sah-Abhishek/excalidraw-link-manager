@@ -4,44 +4,48 @@ import image2 from "../assets/add.png"
 import image3 from "../assets/image3.png"
 import { useState } from "react";
 import Modal from "./Modal";
+import useCardStore from '../store/cardStore.js'
 
 const Home = () => {
-    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleToggleModal = () => {
         setIsModalOpen(prev => !prev)
     }
 
-    const cards = [
-        {
-            title: "Git workflow",
-            image: image3,
-            creationDate: '2023-10-22',
-            type: 'Read-only',
-            link: 'https://excalidraw.com/#room=fac1f49f6c5937037738,pO4Fqng-6R-aNtjH95KxeQ'
-        },
-        {
-            title: "Git workflow",
-            image: image3,
-            creationDate: '2023-10-22',
-            type: 'Read-only',
-            link: '#'
-        },
-        {
-            title: "Git workflow",
-            image: image3,
-            creationDate: '2023-10-22',
-            type: 'Read-only',
-            link: '#'
-        },
-        {
-            title: "Git workflow",
-            image: image3,
-            creationDate: '2023-10-22',
-            type: 'Read-only',
-            link: '#'
-        },
-    ];
+    const cards = useCardStore(state => state.cards)
+
+
+    // const cards = [
+    //     {
+    //         title: "Git workflow",
+    //         image: image3,
+    //         creationDate: '2023-10-22',
+    //         type: 'Read-only',
+    //         link: 'https://excalidraw.com/#room=fac1f49f6c5937037738,pO4Fqng-6R-aNtjH95KxeQ'
+    //     },
+    //     {
+    //         title: "Git workflow",
+    //         image: image3,
+    //         creationDate: '2023-10-22',
+    //         type: 'Read-only',
+    //         link: '#'
+    //     },
+    //     {
+    //         title: "Git workflow",
+    //         image: image3,
+    //         creationDate: '2023-10-22',
+    //         type: 'Read-only',
+    //         link: '#'
+    //     },
+    //     {
+    //         title: "Git workflow",
+    //         image: image3,
+    //         creationDate: '2023-10-22',
+    //         type: 'Read-only',
+    //         link: '#'
+    //     },
+    // ];
 
     return (
         <div className="flex justify-center items-center flex-col">
@@ -61,12 +65,15 @@ const Home = () => {
                 {/* Dynamic Cards */}
                 {cards.map((card, index) => (
                     <Card
+                        isModalOpen={isModalOpen}
+                        handleToggleModal={handleToggleModal}
                         key={index}
                         image={card.image}
-                        title={card.title}
+                        title={card.name}
                         creationDate={card.creationDate}
                         type={card.type}
                         link={card.link}
+                        date={card.date}
                         className="w-full  rounded-xl border-black border-2" />
                 ))}
             </div>
