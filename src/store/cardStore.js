@@ -6,6 +6,9 @@ const useCardStore = create(persist(
     (set) => ({
         cards: [],
         addCard: (card) => set((state) => ({ cards: [...state.cards, card] })),
+        deleteCard: (cardId) => set((state) => ({
+            cards: state.cards.filter(card => card.cardId != cardId)
+        }))
 
 
     }),

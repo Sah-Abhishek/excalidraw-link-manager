@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import image1 from "../assets/image.webp";
 import Modal from "./Modal";
+import useCardStore from "../store/cardStore";
 
 
-const Card = ({ image, title, type, link, date, handleToggleModal, isModalOpen }) => {
+const Card = ({ image, title, type, link, date, handleToggleModal, isModalOpen, cardId }) => {
     const [isDropDownOpen, setIsdropDownOpen] = useState(false);
     const dropDownRef = useRef(null);
+    const deleteCard = useCardStore((state) => state.deleteCard)
 
     const timeSince = (givenDate) => {
         const now = new Date();
@@ -34,6 +36,7 @@ const Card = ({ image, title, type, link, date, handleToggleModal, isModalOpen }
         }
     }
 
+
     const toggleDropDown = () => {
         setIsdropDownOpen(prev => !prev)
     }
@@ -59,7 +62,7 @@ const Card = ({ image, title, type, link, date, handleToggleModal, isModalOpen }
     return (
         <div className="flex flex-col m-4 relative group">
             <div className="w-[580px] h-[310px] overflow-hidden">
-                <a href={link}>
+                <a href={link} target="_blank">
                     <img
                         src={image}
                         alt={title}
@@ -82,10 +85,11 @@ const Card = ({ image, title, type, link, date, handleToggleModal, isModalOpen }
                 <p className="text-gray-700 font-bold">{timeSince(date)}</p>
             </div>
             {isDropDownOpen && (
-                <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg">
-                    <div ref={dropDownRef} className="p-2">
-                        <p className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg">Description</p>
-                        <p className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg"><button onClick={handleToggleModal}>Edit</button></p>
+                <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg border-black border">
+                    <div ref={dropDownRef} className="p-2 ">
+                        <p className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg hover:scale-105">Description</p>
+                        <p className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg hover:scale-105"><button onClick={handleToggleModal}>Edit</button></p>
+                        <p className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg hover:scale-105"><button onClick={() => deleteCard(cardId)}>Delete</button></p>
                     </div>
                 </div>
 

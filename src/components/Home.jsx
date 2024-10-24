@@ -65,6 +65,7 @@ const Home = () => {
                 {/* Dynamic Cards */}
                 {cards.map((card, index) => (
                     <Card
+                        cardId={card.cardId}
                         isModalOpen={isModalOpen}
                         handleToggleModal={handleToggleModal}
                         key={index}
